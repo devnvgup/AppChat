@@ -8,9 +8,10 @@ import { AuthContext } from '../../Context/AuthProvider'
 const { Title } = Typography
 const Login = () => {
     const contextType = useContext(AuthContext)
-    const {handleFlag} = contextType
-    const handleFbLogin = () => {
-        handleFlag(true)
+    const { handleLogin, isFirstLogin } = contextType
+    console.log(isFirstLogin);
+    const handleFbLogin = async () => {
+        handleLogin(true)
     }
     return (
         <div>

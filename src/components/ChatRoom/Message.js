@@ -22,7 +22,7 @@ const Message = ({text,displayname,createdAt,photoURL}) => {
   return (
     <WrapperStyled>
         <div>
-            <Avatar src={photoURL}>A</Avatar>
+            <Avatar size='small' src={photoURL}>A</Avatar>
             <Typography.Text className='author'>{displayname}</Typography.Text>
             <Typography.Text className='date'>{createdAt}</Typography.Text>
         </div>

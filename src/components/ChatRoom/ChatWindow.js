@@ -34,15 +34,29 @@ const ContentStyled = styled.div`
     padding:11px;
     justify-content:flex-end;
 `
-const ButtonGruopStyled=styled.div`
+const ButtonGruopStyled = styled.div`
     display:flex;
     align-items:center;
 `
-const MessageListStyled=styled.div`
-
+const MessageListStyled = styled.div`
+    max-height:100%;
+    overflow-y:auto;
 `
-const WrapperStyled=styled.div`
+const WrapperStyled = styled.div`
     height:100vh;
+`
+const FormStyled = styled.div`
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:2px 2px 2px 0;
+    border:1px solid rgb(230,230,230);
+    border-radius:2px
+
+    .ant-form-item {
+        flex:1;
+        margin-bottom:0
+    }
 `
 const ChatWindow = () => {
     return (
@@ -69,17 +83,17 @@ const ChatWindow = () => {
             </HeaderStyled>
             <ContentStyled>
                 <MessageListStyled>
-                    <Message text='test' displayname='truong' createdAt={123123}/>
-                    <Message text='test' displayname='truong' createdAt={123123}/>
-                    <Message text='test' displayname='truong' createdAt={123123}/>
-                    <Message text='test' displayname='truong' createdAt={123123}/>
+                    <Message text='test' displayname='truong' createdAt={123123} />
+                    <Message text='test' displayname='truong' createdAt={123123} />
+                    <Message text='test' displayname='truong' createdAt={123123} />
+                    <Message text='test' displayname='truong' createdAt={123123} />
                 </MessageListStyled>
-                <Form>
+                <FormStyled>
                     <Form.Item>
-                        <Input/>
+                        <Input placeholder='tin nhan' bordered={false} autoComplete='off'/>
                     </Form.Item>
-                    <Button>Gửi</Button>
-                </Form>
+                    <Button type='primary'>Gửi</Button>
+                </FormStyled>
             </ContentStyled>
         </WrapperStyled>
     )

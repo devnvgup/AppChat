@@ -1,7 +1,10 @@
 import { Avatar, Button, Typography } from 'antd'
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
-const { text } = Typography
+import {authen} from '../firebase/config'
+import { signOut } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const WrapperStyled = styled.div`
     display:flex;
@@ -14,14 +17,28 @@ const WrapperStyled = styled.div`
         margin-left:5px
     }
 `
+
 const UserInfor = () => {
+    const nav= useNavigate()
+    const contextType = useContext(AuthContext)
+    const {handleSignOut} = contextType
+    const signOutAcc=()=>{
+        signOut(authen).then(()=>{
+            console.log('Sign out success');
+            handleSignOut(false)
+            nav('/login')
+        }).catch((error)=>{
+            console.log(error);
+        })
+    }
+
     return (
         <WrapperStyled>
             <div>
                 <Avatar>T</Avatar>
-                <text className='username'>Truong</text>
+                <Typography.Text className='username'>Truong</Typography.Text>
             </div>
-            <Button ghost>Đăng Xuất</Button>
+            <Button ghost onClick={signOutAcc}>Đăng Xuất</Button>
         </WrapperStyled>
     )
 }
