@@ -4,9 +4,7 @@ import { FacebookAuthProvider } from "firebase/auth";
 import { signInWithPopup, getAdditionalUserInfo } from "firebase/auth";
 import { authen } from '../components/firebase/config'
 import { Spin } from 'antd';
-import { db } from '../components/firebase/config'
-import { collection, addDoc } from "firebase/firestore";
-
+import { addDocument } from '../components/firebase/service';
 
 export const AuthContext = createContext();
 
@@ -40,17 +38,14 @@ const AuthProvider = ({ children }) => {
                             displayName, email, uid, photoURL, result
                         })
                         if (isFirstLogin) {
-                            try {
-                                await addDoc(collection(db, 'users'), {
-                                    displayName: displayName,
-                                    email: email,
-                                    photoURL: photoURL,
-                                    uid: uid,
-                                    providerId: result.providerId,
-                                })  
-                            } catch (error) {
-                                console.log(error);
+                            const data = {
+                                displayName: displayName,
+                                email: email,
+                                photoURL: photoURL,
+                                uid: uid,
+                                providerId: result.providerId,
                             }
+                            addDocument('user', data)
                         }
                         setIsLoading(false)
                         nav('/')
