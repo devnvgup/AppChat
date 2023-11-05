@@ -170,3 +170,9 @@ Issues? Report them at https://github.com/firebase/firebase-tools/issues and att
 [debug] [2023-11-05T03:29:18.718Z] <<< [apiv2][status] PUT http://127.0.0.1:8080/emulator/v1/projects/ch-app-e9bad:securityRules 200
 [debug] [2023-11-05T03:29:18.718Z] <<< [apiv2][body] PUT http://127.0.0.1:8080/emulator/v1/projects/ch-app-e9bad:securityRules {}
 [info] +  firestore: Rules updated. 
+[info] i  firestore: Change detected, updating rules... 
+[debug] [2023-11-05T03:34:29.188Z] >>> [apiv2][query] PUT http://127.0.0.1:8080/emulator/v1/projects/ch-app-e9bad:securityRules [none]
+[debug] [2023-11-05T03:34:29.188Z] >>> [apiv2][body] PUT http://127.0.0.1:8080/emulator/v1/projects/ch-app-e9bad:securityRules {"ignore_errors":true,"rules":{"files":[{"name":"security.rules","content":"rules_version = '2';\r\n\r\nservice cloud.firestore {\r\n  match /databases/{database}/documents {\r\n\r\n    // This rule allows anyone with your Firestore database reference to view, edit,\r\n    // and delete all data in your Firestore database. It is useful for getting\r\n    // started, but it is configured to expire after 30 days because it\r\n    // leaves your app open to attackers. At that time, all client\r\n    // requests to your Firestore database will be denied.\r\n    //\r\n    // Make sure to write security rules for your app before that time, or else\r\n    // all client requests to your Firestore database will be denied until you Update\r\n    // your rules\r\n    match /{document=**} {\r\n      allow read, write: if request.time < timestamp.date(2023, 11, 30);\r\n    }\r\n  }\r\n}"}]}}
+[debug] [2023-11-05T03:34:29.214Z] <<< [apiv2][status] PUT http://127.0.0.1:8080/emulator/v1/projects/ch-app-e9bad:securityRules 200
+[debug] [2023-11-05T03:34:29.214Z] <<< [apiv2][body] PUT http://127.0.0.1:8080/emulator/v1/projects/ch-app-e9bad:securityRules {}
+[info] +  firestore: Rules updated. 
