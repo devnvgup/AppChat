@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AuthProvider from "./Context/AuthProvider";
 import AppProvider from "./Context/AppProvider";
 import AddRoomModal from "./components/Modals/AddRoomModal";
-import InviteMemberModal from "./components/Modals/InviteMemberModal";
 
 function App() {
   return (
@@ -17,7 +16,6 @@ function App() {
           <Route path="/chatroom" element={<ChatRoom />} />
         </Routes>
         <AddRoomModal/>
-        <InviteMemberModal/>
         </AppProvider>
       </AuthProvider>
     </Router>

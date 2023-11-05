@@ -1,6 +1,6 @@
 import { Form, Input } from "antd";
 import Modal from "antd/es/modal/Modal";
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { AppContext } from "../../Context/AppProvider";
 import { addDocument } from "../../firebase/services";
 import { AuthContext } from "../../Context/AuthProvider";
@@ -8,6 +8,8 @@ import { AuthContext } from "../../Context/AuthProvider";
 function AddRoomModal() {
   const appContext = useContext(AppContext);
   const authContext = useContext(AuthContext);
+  const roomRef = useRef();
+  const descRef = useRef();
   const {
     user: { uid },
   } = authContext;
@@ -19,8 +21,9 @@ function AddRoomModal() {
       { ...form.getFieldValue(), members: [uid] },
       `${Math.random()}`
     );
-    form.resetFields()
-    setAddRoomVisible(false)
+    setAddRoomVisible(false);
+    roomRef.current.value = "";
+    descRef.current.value = "";
   };
   return (
     <div>
@@ -32,10 +35,10 @@ function AddRoomModal() {
       >
         <Form form={form} layout="vertical">
           <Form.Item label="Room name" name="name">
-            <Input placeholder="Input Room"/>
+            <Input placeholder="Input Room" value={123} ref={roomRef} />
           </Form.Item>
           <Form.Item label="Desc" name="description">
-            <Input.TextArea placeholder="Input desc"/>
+            <Input.TextArea placeholder="Input desc" value={123} ref={descRef} />
           </Form.Item>
         </Form>
       </Modal>
