@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Button, Typography } from "antd";
 import { signInWithPopup, FacebookAuthProvider } from "firebase/auth";
 import { auth, startFireBase } from "../../firebase/config";
-import { addDocument } from "../../firebase/services";
+import { addDocument, generateKeywords } from "../../firebase/services";
 
 startFireBase();
 const { Title } = Typography;
@@ -19,6 +19,8 @@ function Login() {
             email: user.email,
             photoURL: user.photoURL,
             providerId: user.providerId,
+            uid: user.uid,
+            keyWord: generateKeywords(user.displayName),
           };
           await addDocument("users", data, user.uid);
         }

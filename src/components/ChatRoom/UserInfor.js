@@ -31,7 +31,6 @@ function UserInfor() {
       const unsubscribe = onSnapshot(docRef, (docSnapshot) => {
         const data = docSnapshot.data(); // Lấy dữ liệu từ snapshot
         // Xử lý dữ liệu ở đây
-        console.log(data);
       });
       return () => {
         unsubscribe();
